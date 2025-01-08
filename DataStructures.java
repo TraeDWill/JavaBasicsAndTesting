@@ -11,6 +11,9 @@ public class DataStructures {
 
 }
 
+/**
+ * This class is a hash map of contacts
+ */
 class Contacts{
     HashMap<String, Integer> contacts = new HashMap<String, Integer>();
 
@@ -73,44 +76,38 @@ class stackNode{
  * The Stack class itself
  */
 
-class Notifications{
+class Navigation{
     stackNode head;
     Integer top;
 
-    public Notifications(){
+    public Navigation(){
         head = null;
         top = 0;
     }
 
     /**
-     * @param notif The notification to be added to the stack
+     * @param notif The navigation to be added to the stack
      */
-    public void addNotif(String notif){
+    public void addNavigation(String nav){
         //If no notifications
         if(head == null){
             head = new stackNode();
-            head.setNav(top, notif);
+            head.setNav(top, nav);
             ++top;
         }
         //If more than one node
         else{
-            //stackNode current = head;
-
-            /*while(current.getNext() != null){
-                current = current.getNext();
-            }*/
-
             //Max notifications in the array of the node
             if(top == 5){
                 top = 0;
                 stackNode temp = new stackNode();
                 temp.setNext(head)
-                temp.setNav(top, notif);
+                temp.setNav(top, nav);
                 ++top;
             }
             //Normal add
             else{
-                head.setNav(top, notif);
+                head.setNav(top, nav);
                 ++top;
             }
 
@@ -118,9 +115,9 @@ class Notifications{
     }
 
     /**
-     * Goal: Removes the most recent notification from the stack after it's viewed
+     * Goal: Removes the most recent navigation from the stack after it's viewed
      */
-    public void viewLatestNotif(){
+    public void viewLatestNavigation(){
         if(head == null){
             System.err.println("There are no notifications");
         }
@@ -140,7 +137,7 @@ class Notifications{
     /**
      * Goal: View and remove all notifications
      */
-    public void viewAllNotifs(){
+    public void viewAllNavigation(){
         if(head == null){
             System.out.println("There are no notifications.");
         }
@@ -158,5 +155,24 @@ class Notifications{
 }
 
 class queueNode{
+    String notification;
+    queueNode next;
+
+    public queueNode(){
+        notification = "";
+        next = null;
+    }
+
+    public queueNode getNext(){
+        return next;
+    }
+
+    public String getNotification(){
+        return notification;
+    }
+
+}
+
+class Notifications{
 
 }
