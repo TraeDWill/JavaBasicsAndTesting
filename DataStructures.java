@@ -136,6 +136,25 @@ class Notifications{
         }
 
     }
+
+    /**
+     * Goal: View and remove all notifications
+     */
+    public void viewAllNotifs(){
+        if(head == null){
+            System.out.println("There are no notifications.");
+        }
+
+        while(head != null & top < 0){
+            head.getMostRecentNavigation(top - 1);
+            --top;
+            if(top == 0){
+                head = head.getNext();
+                top = 5;
+            }
+        }
+    }
+
 }
 
 class queueNode{
