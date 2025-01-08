@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class DataStructures {
 
@@ -154,6 +155,9 @@ class Navigation{
 
 }
 
+/**
+ * This class is for the sepearte queue node
+ */
 class queueNode{
     String notification;
     queueNode next;
@@ -171,8 +175,77 @@ class queueNode{
         return notification;
     }
 
+    public void setNotification(String notif){
+        notification = notif;
+    }
+
+    public void setNext(queueNode setter){
+        next = setter;
+    }
+
 }
 
+/**
+ * This is the queue. Using a queue we will cycle through notifications
+ */
 class Notifications{
+    queueNode rear;
 
-}
+    public Notifications(){
+        rear = null;
+    }
+
+    /**
+     * Enqueue
+     */
+    public void addNotification(String notif){
+            queueNode addNotif = new queueNode();
+            addNotif.setNotification(notif);
+
+            if(rear == null){
+                rear = addNotif;
+                rear.setNext(rear);
+            }
+            else{
+                queueNode first = rear.getNext();
+                rear.setNext(addNotif);
+                addNotif.setNext(first);
+                rear = addNotif;
+            }
+    }
+
+    /**
+     * Dequeue
+     */
+    public String viewNotification(){
+        String notif = "";
+        if(rear == null){
+            System.out.println("There are no notifications.");
+            return notif;
+        }
+        if(rear == rear.getNext()){
+            notif = rear.getNotification();
+            rear = null;
+            return notif;
+        }
+        else{
+            queueNode temp = rear.getNext();
+            rear.setNext(temp.getNext());
+            notif = temp.getNotification();
+            return notif;
+        }
+    }
+
+    /**
+     * Dequeue All
+     */
+    public ArrayList<String> viewAllNotifications(){
+        ArrayList<String> notifications = new ArrayList<>()
+        
+        while(rear != null){
+           notifications.add(viewNotification());
+        }
+
+        return notifications;
+    }
+}   
