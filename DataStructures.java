@@ -89,12 +89,13 @@ class Navigation{
     /**
      * @param notif The navigation to be added to the stack
      */
-    public void addNavigation(String nav){
+    public Integer addNavigation(String nav){
         //If no notifications
         if(head == null){
             head = new stackNode();
             head.setNav(top, nav);
             ++top;
+            return 0;
         }
         //If more than one node
         else{
@@ -105,11 +106,13 @@ class Navigation{
                 temp.setNext(head)
                 temp.setNav(top, nav);
                 ++top;
+                return top;
             }
             //Normal add
             else{
                 head.setNav(top, nav);
                 ++top;
+                return top;
             }
 
         }
@@ -118,9 +121,10 @@ class Navigation{
     /**
      * Goal: Removes the most recent navigation from the stack after it's viewed
      */
-    public void viewLatestNavigation(){
+    public Integer viewLatestNavigation(){
         if(head == null){
             System.err.println("There are no notifications");
+            return 0;
         }
         else{
             System.out.println("Notification:" + head.getMostRecentNavigation(top - 1));
@@ -132,15 +136,17 @@ class Navigation{
                 top = 4;
             }
         }
+        return 1;
 
     }
 
     /**
      * Goal: View and remove all notifications
      */
-    public void viewAllNavigation(){
+    public Integer viewAllNavigation(){
         if(head == null){
             System.out.println("There are no notifications.");
+            return 0;
         }
 
         while(head != null & top < 0){
@@ -151,6 +157,7 @@ class Navigation{
                 top = 5;
             }
         }
+        return 1;
     }
 
 }
