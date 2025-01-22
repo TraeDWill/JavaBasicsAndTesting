@@ -78,8 +78,8 @@ class stackNode{
  */
 
 class Navigation{
-    stackNode head;
-    Integer top;
+    private stackNode head;
+    private Integer top;
 
     public Navigation(){
         head = null;
@@ -103,7 +103,7 @@ class Navigation{
             if(top == 5){
                 top = 0;
                 stackNode temp = new stackNode();
-                temp.setNext(head)
+                temp.setNext(head);
                 temp.setNav(top, nav);
                 ++top;
                 return top;
@@ -123,8 +123,7 @@ class Navigation{
      */
     public Integer viewLatestNavigation(){
         if(head == null){
-            System.err.println("There are no notifications");
-            return 0;
+             throw new IllegalArgumentException("Navigation is Empty");
         }
         else{
             System.out.println("Notification:" + head.getMostRecentNavigation(top - 1));
@@ -132,8 +131,14 @@ class Navigation{
 
             //if the node is empty
             if(top == 0){
-                head = head.getNext();
-                top = 4;
+                if(head.getNext() != null){
+                    head = head.getNext();
+                    top = 5;
+                }
+                else{
+                    head = null;
+                    top = 0;
+                }
             }
         }
         return 1;
@@ -160,6 +165,22 @@ class Navigation{
         return 1;
     }
 
+    /**
+     * Goal: To check if Head is null
+     */
+    public int isHeadNull(){
+
+        if(head == null){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+
+    public int getTop(){
+        return top;
+    }
 }
 
 /**
@@ -247,7 +268,7 @@ class Notifications{
      * Dequeue All
      */
     public ArrayList<String> viewAllNotifications(){
-        ArrayList<String> notifications = new ArrayList<>()
+        ArrayList<String> notifications = new ArrayList<>();
         
         while(rear != null){
            notifications.add(viewNotification());
