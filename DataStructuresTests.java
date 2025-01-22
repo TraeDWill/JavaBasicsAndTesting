@@ -10,6 +10,7 @@ public class DataStructuresTests {
 
     private Navigation test = new Navigation();
     private String stuff = "Halp";
+    private Notifications otherTest = new Notifications();
 
     @Test
     public void addNavigationEmpty(){
@@ -27,7 +28,7 @@ public class DataStructuresTests {
 
     @Test
     public void addNavigationFullNode(){
-        for(int i = 0; i < 7; ++i){
+        for(int i = 0; i < 6; ++i){
             test.addNavigation(stuff);
         }
 
@@ -41,8 +42,88 @@ public class DataStructuresTests {
 
     @Test
     public void viewNavigationNormal(){
-        
+        test.addNavigation(stuff);
+        test.viewLatestNavigation();
+        assertEquals(0, test.getTop());
     }
 
+    @Test
+    public void viewNavigationNewNode(){
+        for(int i = 0; i < 6; ++i){
+            test.addNavigation(stuff);
+        }
+        assertEquals(5, test.viewLatestNavigation());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void viewAllNavigationEmpty(){
+        test.viewAllNavigation();
+    }
+
+    @Test
+    public void viewAllNavigationNewNode(){
+        for(int i = 0; i < 6; ++i){
+            test.addNavigation(stuff);
+        }
+        test.viewAllNavigation();
+        assertEquals(0, test.getTop());
+    }
+
+    @Test
+    public void viewAllNavigationNormal(){
+        for(int i = 0; i < 4; ++i){
+            test.addNavigation(stuff);
+        }
+        test.viewAllNavigation();
+        assertEquals(0, test.getTop());
+    }
+
+    @Test
+    public void addNotificationEmpty(){
+        otherTest.addNotification(stuff);
+        assertNotEquals(0, otherTest.isRearNull());
+    }
+
+    @Test
+    public void addNotificationNormal(){
+        for(int i = 0; i < 3; ++i){
+            otherTest.addNotification(stuff);
+        }
+
+        assertEquals(3, otherTest.notifCount());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void viewNotificationEmpty(){
+        otherTest.viewNotification();
+    }
+
+    @Test
+    public void viewNotificationNormal(){
+        for(int i = 0; i < 3; ++i){
+            otherTest.addNotification(stuff);
+        }
+        int count = otherTest.notifCount();
+        otherTest.viewNotification();
+        assertNotEquals(count, otherTest.notifCount());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void viewAllNotificationsEmpty(){
+        otherTest.viewAllNotifications();
+    }
+
+    @Test
+    public void viewAllNotificationsNormal(){
+        for(int i = 0; i < 3; ++i){
+            otherTest.addNotification(stuff);
+        }
+
+        otherTest.viewAllNotifications();
+
+        assertEquals(0, otherTest.isRearNull());
+    }
 }
 

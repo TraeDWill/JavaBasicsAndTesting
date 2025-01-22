@@ -105,6 +105,7 @@ class Navigation{
                 stackNode temp = new stackNode();
                 temp.setNext(head);
                 temp.setNav(top, nav);
+                head = temp;
                 ++top;
                 return top;
             }
@@ -121,7 +122,7 @@ class Navigation{
     /**
      * Goal: Removes the most recent navigation from the stack after it's viewed
      */
-    public Integer viewLatestNavigation(){
+    public int viewLatestNavigation(){
         if(head == null){
              throw new IllegalArgumentException("Navigation is Empty");
         }
@@ -141,7 +142,7 @@ class Navigation{
                 }
             }
         }
-        return 1;
+        return top;
 
     }
 
@@ -150,17 +151,11 @@ class Navigation{
      */
     public Integer viewAllNavigation(){
         if(head == null){
-            System.out.println("There are no notifications.");
-            return 0;
+            throw new IllegalArgumentException("Navigation is Empty");
         }
 
-        while(head != null & top < 0){
-            head.getMostRecentNavigation(top - 1);
-            --top;
-            if(top == 0){
-                head = head.getNext();
-                top = 5;
-            }
+        while(head != null & top > 0){
+            viewLatestNavigation();
         }
         return 1;
     }
@@ -248,8 +243,7 @@ class Notifications{
     public String viewNotification(){
         String notif = "";
         if(rear == null){
-            System.out.println("There are no notifications.");
-            return notif;
+            throw new IllegalArgumentException("Notifications are empty");
         }
         if(rear == rear.getNext()){
             notif = rear.getNotification();
@@ -269,11 +263,40 @@ class Notifications{
      */
     public ArrayList<String> viewAllNotifications(){
         ArrayList<String> notifications = new ArrayList<>();
+
+        if(rear == null){
+            throw new IllegalArgumentException("Notifications are empty");
+        }
         
         while(rear != null){
            notifications.add(viewNotification());
         }
 
         return notifications;
+    }
+
+    public int isRearNull(){
+        if(rear == null){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+        
+    }
+
+    public int notifCount(){
+        if(rear == null){
+            return 0;
+        }
+        
+        int count  = 1;
+        queueNode temp = rear.getNext();
+        while(temp != rear){
+            ++count;
+            temp = temp.getNext();
+        }
+        return count;
+        
     }
 }   
