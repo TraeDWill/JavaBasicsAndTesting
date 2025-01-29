@@ -16,37 +16,40 @@ public class DataStructures {
         System.out.println("Tibbs:\"I am the Almighty Tiberius Thistlebottom! But you may call me Tibbs.\"");
         System.out.println("Tibbs:\"These quests laid before you show the basics of Java usage and tests in Junit framework! Be prepared Traveler, this is just the start!\"");
         System.out.println("Tibbs:\"Now Traveler, which quest will it be today?\"");
-        System.out.println("Quest Board: \n1. Easy(Hash Map)\n2. Medium(Stack)\n3. Hard(Queue)");
+        System.out.println("Quest Board: \n1. Easy(Hash Map)\n2. Medium(Stack)\n3. Hard(Queue)\n4.Finish your traveling(Quit)");
         int choice = questChoice.nextInt();
         
         switch(choice){
             case(1):
                 System.out.println("Tibbs:\"Easy huh? Well we all must start somewhere!\"");
                 System.out.println("Tibbs:\"This quest uses a Hash Map in order to simulate a contact list for some witchcraft known as a cellphone!\"");
+                firstQuest();
                 break;
 
             case(2):
                 System.out.println("Tibbs:\"Atta boy Traveler! Medium is much more the pace of an accomplished Traveler!\"");
                 System.out.println("Tibbs:\"This quest uses a Stack in order to keep track of where one has navigated to on the mystical phone device!\"");
+                secondQuest();
                 break;
             case(3):
                 System.out.println("Tibbs:\"HARD?!?! Traveler you are either incredibly brave or incredibly foolish!\"");
                 System.out.println("Tibbs:\"Make sure to leave your name with the clerk on the way out so we can bet... I mean keep track of you!\"");
                 System.out.println("Tibbs:\"This quest uses a Queue in order to keep track of a magically instant form of communication known as Notifications! Be careful of the Notifications Traveler!\"");
+                thirdQuest();
                 break;
 
             default:
                 System.err.println("Tibbs: My goodness, I didn't know reading was so difficult! What a shame...\n(Invalid Choice)");
                 break;
         }
-
+        System.out.println("Be well until we next meet, Traveler! I will have plenty more for you soon!")
         questChoice.close();
     }
 
     /**
      * Goal: Showcase the usage of the Hashmap Implemented
      */
-    public void firstQuest(){
+    public static void firstQuest(){
 
         // Variables
         Scanner use = new Scanner(System.in);
@@ -56,7 +59,7 @@ public class DataStructures {
         Contacts list = new Contacts();
 
         do{
-            System.out.println("Hash Map Uses:\n1.Insert\n2.Remove\n3.Retreieve number by name.\n4.Display all contacts.\n5.Display amount of contacts.");
+            System.out.println("Hash Map Uses:\n1.Insert\n2.Remove\n3.Retreieve number by name.\n4.Display all contacts.\n5.Display amount of contacts.\n6.Exit");
             choice = use.nextInt();
 
             switch(choice){
@@ -108,13 +111,103 @@ public class DataStructures {
     /**
      * Goal: Showcase the usage of the Stack implemented
      */
-    public void secondQuest(){
+    public static void secondQuest(){
+
+        
+        // Variables
+        Scanner use = new Scanner(System.in);
+        int choice = 0;
+        String sInput = "";
+        Navigation nav = new Navigation();
+
+        do{
+            System.out.println("Stack Uses:\n1.Push\n2.Pop\n3.Display all.\n4.Exit");
+            choice = use.nextInt();
+
+            switch(choice){
+                case(1):
+                    System.out.println("Name of the place being navigated to:");
+                    sInput = use.nextLine();
+                    nav.addNavigation(sInput);
+                    break;
+
+                case(2):
+                    int result = nav.viewLatestNavigation();
+                    if(result == 0){
+                        System.out.println("No more navigation history available.");
+                    }
+                    break;
+
+                case(3):
+                    nav.viewAllNavigation();
+                    break;
+
+                case(4):
+                    System.out.println("Tibbs:\"How surprising! Looks like there's more to you than meets the eye! Medium quest finished!\"");
+                    break;
+
+                default:
+                    System.out.println("Tibbs:\"*Takes a deep breath* Look Traveler, you've been doing this for a while. You have less choices than fingers on your hands! Choose correctly!\"\n(Invalid Choice)");
+                    break;
+            }
+        }while(choice != 4);
+
+        use.close();
+        
 
     }
     /**
      * Goal: Showcase the usage of the Queue implemented
      */
-    public void thirdQuest(){
+    public static void thirdQuest(){
+
+        
+        
+        // Variables
+        Scanner use = new Scanner(System.in);
+        int choice = 0;
+        String sInput = "";
+        int iInput = 0;
+        Notifications notif = new Notifications();
+
+        do{
+            System.out.println("Stack Uses:\n1.Enqueue\n2.Dequeue and display\n3.Dequeueu and display all.\n4.Amount of notifications\n5.Exit");
+            choice = use.nextInt();
+
+            switch(choice){
+                case(1):
+                    System.out.println("Notification contents:");
+                    sInput = use.nextLine();
+                    notif.addNotification(sInput);
+                    break;
+
+                case(2):
+                    String result = notif.viewNotification();
+                    System.out.println("Notification: "+ result);
+                    break;
+
+                case(3):
+                    ArrayList<String> notifications = notif.viewAllNotifications();
+                    for(String note : notifications){
+                        System.out.println(note);
+                    }
+                    break;
+                case(4):
+                    int amount = notif.notifCount();
+                    System.out.println("Notifications amount:" + amount);
+                    break;
+
+                case(5):
+                    System.out.println("Tibbs:\"Tra..TRAVELER!!! YOU SURVIVED! Wait.. Oh no my bet... I mean....\n*Tibbs takes out a ticket and tears it up*\nWelcome home Traveler, you've done truly well!(For everyone except my pocket)\"");
+                    break;
+
+                default:
+                    System.out.println("Tibbs:\"I'm surprised you even accepted this one, Traveler! It's never too early to back out!(And double my pocket change)\"\n(Invalid Choice)");
+                    break;
+            }
+        }while(choice != 4);
+
+        use.close();
 
     }
 
