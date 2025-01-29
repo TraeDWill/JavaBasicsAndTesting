@@ -7,7 +7,24 @@ import java.util.ArrayList;
 public class DataStructures {
 
     public static void main(String[] args) {
-        // Your code here
+
+        //Variables
+        Scanner questChoice = new Scanner(System.in);
+        
+        //Greeting
+        System.out.println("Welcome to the \"Java Basics\" outpost, Traveler!");
+        System.out.println("Tibbs:\"I am the Almighty Tiberius Thistlebottom! But you may call me Tibbs.\"");
+        System.out.println("Tibbs:\"These quests laid before you show the basics of Java usage and tests in Junit framework! Be prepared Traveler, this is just the start!\"");
+        System.out.println("Tibbs:\"Now Traveler, which quest will it be today?\"");
+        int choice = questChoice.nextInt();
+        
+        switch(choice){
+
+            default:
+            System.err.println("Tibbs: My goodness, I didn't know reading was so difficult! What a shame...\n(Invalid Choice)");
+        }
+
+        questChoice.close();
     }
 
 }
