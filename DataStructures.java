@@ -16,15 +16,106 @@ public class DataStructures {
         System.out.println("Tibbs:\"I am the Almighty Tiberius Thistlebottom! But you may call me Tibbs.\"");
         System.out.println("Tibbs:\"These quests laid before you show the basics of Java usage and tests in Junit framework! Be prepared Traveler, this is just the start!\"");
         System.out.println("Tibbs:\"Now Traveler, which quest will it be today?\"");
+        System.out.println("Quest Board: \n1. Easy(Hash Map)\n2. Medium(Stack)\n3. Hard(Queue)");
         int choice = questChoice.nextInt();
         
         switch(choice){
+            case(1):
+                System.out.println("Tibbs:\"Easy huh? Well we all must start somewhere!\"");
+                System.out.println("Tibbs:\"This quest uses a Hash Map in order to simulate a contact list for some witchcraft known as a cellphone!\"");
+                break;
+
+            case(2):
+                System.out.println("Tibbs:\"Atta boy Traveler! Medium is much more the pace of an accomplished Traveler!\"");
+                System.out.println("Tibbs:\"This quest uses a Stack in order to keep track of where one has navigated to on the mystical phone device!\"");
+                break;
+            case(3):
+                System.out.println("Tibbs:\"HARD?!?! Traveler you are either incredibly brave or incredibly foolish!\"");
+                System.out.println("Tibbs:\"Make sure to leave your name with the clerk on the way out so we can bet... I mean keep track of you!\"");
+                System.out.println("Tibbs:\"This quest uses a Queue in order to keep track of a magically instant form of communication known as Notifications! Be careful of the Notifications Traveler!\"");
+                break;
 
             default:
-            System.err.println("Tibbs: My goodness, I didn't know reading was so difficult! What a shame...\n(Invalid Choice)");
+                System.err.println("Tibbs: My goodness, I didn't know reading was so difficult! What a shame...\n(Invalid Choice)");
+                break;
         }
 
         questChoice.close();
+    }
+
+    /**
+     * Goal: Showcase the usage of the Hashmap Implemented
+     */
+    public void firstQuest(){
+
+        // Variables
+        Scanner use = new Scanner(System.in);
+        int choice = 0;
+        String sInput = "";
+        int iInput = 0;
+        Contacts list = new Contacts();
+
+        do{
+            System.out.println("Hash Map Uses:\n1.Insert\n2.Remove\n3.Retreieve number by name.\n4.Display all contacts.\n5.Display amount of contacts.");
+            choice = use.nextInt();
+
+            switch(choice){
+                case(1):
+                    System.out.println("Name of the contact being added:");
+                    sInput = use.nextLine();
+                    System.out.println("The phone number of said contact:");
+                    iInput = use.nextInt();
+                    list.addContact(sInput, iInput);
+                    break;
+
+                case(2):
+                    System.out.println("Name of the contact being removed:");
+                    sInput = use.nextLine();
+                    list.removeContact(sInput);
+                    break;
+
+                case(3):
+                    System.out.println("Name of the contact being retrieved:");
+                    sInput = use.nextLine();
+                    int number = list.getNumber(sInput);
+                    System.out.println("The number for " + sInput + "is: " + number);
+                    break;
+                    
+                case(4):
+                    System.out.println("List of contacts:");
+                    list.listContacts();
+                    break;
+
+                case(5):
+                    int size = list.sizeOfContacts();
+                    System.out.println("The amount of contacts this list has is: " + size);
+                    break; 
+
+                case(6):
+                    System.out.println("Tibbs:\"Great work at a... Gooooood starting task!\"")
+                    break;
+
+                default:
+                    System.out.println("Tibbs:\"I know this is the easy quest, but come now Traveler! My great, great, great grandmother can still differentiate between numbers!\"\n(Invalid Choice)");
+                    break;
+            }
+        }while(choice != 6);
+
+        use.close();
+        
+    }
+
+    /**
+     * Goal: Showcase the usage of the Stack implemented
+     */
+    public void secondQuest(){
+
+    }
+    /**
+     * Goal: Showcase the usage of the Queue implemented
+     */
+    public void thirdQuest(){
+
     }
 
 }
